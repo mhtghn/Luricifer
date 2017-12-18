@@ -1,33 +1,42 @@
+import argparse
 import dbus
-import sys
 import AZlyrics
 
-session_bus = dbus.SessionBus()
-spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify",
-                                     "/org/mpris/MediaPlayer2")
-spotify_properties = dbus.Interface(spotify_bus,
-                                    "org.freedesktop.DBus.Properties")
-metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
 
-artist = metadata['xesam:artist'][0]
-title = metadata['xesam:title'].split(" (feat.",1)[0]
-title = title.split(" (with",1)[0]
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--line', action='store_true',
+        help='Displays the lyrics line per line')
+    return parser.parse_args()
 
-az = AZlyrics.Azlyrics(artist, title)
-lyrics = az.get_lyrics()
-formatedLyrics = az.format_lyrics(lyrics)
-listedLyrics = formatedLyrics.split('\n')
-print(artist, "-" ,title)
-for arg in sys.argv:
-    if arg == "--all":
-        print(formatedLyrics)
-    elif arg == "--line":
-        for phrase in listedLyrics:
+
+def retrieve_spotify_metadata():
+    session_bus = dbus.SessionBus()
+    spotify_bus = session_bus.get_object(
+        "org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2")
+    spotify_properties = dbus.Interface(
+        spotify_bus, "org.freedesktop.DBus.Properties")
+    return spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
+
+
+if __name__ == '__main__':
+    args = parse_args()
+    metadata = retrieve_spotify_metadata()
+
+    artist = metadata['xesam:artist'][0]
+    title = metadata['xesam:title'].split(" (feat.", 1)[0]
+    title = title.split(' (with', 1)[0]
+
+    print('{0} - {1}'.format(artist, title))
+
+    az = AZlyrics.Azlyrics(artist, title)
+    lyrics = az.get_lyrics()
+    formatted_lyrics = az.format_lyrics(lyrics)
+
+    if args.line:
+        for phrase in formatted_lyrics.splitlines():
             print(phrase)
             input()
-    elif arg == "luricifer.py":
-        pass
     else:
-        print("Usage :")
-        print("python luricifer.py -all for all the lyrics at once")
-        print("python luricifer.py -line to display the lyrics per line")
+        print(formatted_lyrics)

@@ -26,12 +26,10 @@ You need to have the Spotify app (not the web player) launched and a song playin
 
 If you want to display all the lyrics at once : 
 
-    $ cd Luricifer
-    $ python luricifer.py --all
+    $ python luricifer.py
     
 If you want to display the lyrics one line at a time : 
 
-    $ cd Luricifer
     $ python luricifer.py --line
     
 Press `<Enter>` to display the next line.
