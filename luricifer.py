@@ -1,6 +1,5 @@
 import argparse
 import dbus
-import sys
 import AZlyrics
 
 
@@ -26,8 +25,8 @@ if __name__ == '__main__':
     metadata = retrieve_spotify_metadata()
 
     artist = metadata['xesam:artist'][0]
-    title = metadata['xesam:title'].split(" (feat.",1)[0]
-    title = title.split(" (with", 1)[0]
+    title = metadata['xesam:title'].split(" (feat.", 1)[0]
+    title = title.split(' (with', 1)[0]
 
     print('{0} - {1}'.format(artist, title))
 
