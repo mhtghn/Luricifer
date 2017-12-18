@@ -25,6 +25,6 @@ Usage
 You need to have the Spotify app (not the web player) launched and a song playing
 
     $ cd Luricifer
-    $ python Luricifer.py
+    $ python luricifer.py
     
 Press Enter to display the next line.
