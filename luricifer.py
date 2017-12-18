@@ -1,4 +1,5 @@
 import dbus
+import sys
 import AZlyrics
 
 session_bus = dbus.SessionBus()
@@ -17,6 +18,16 @@ lyrics = az.get_lyrics()
 formatedLyrics = az.format_lyrics(lyrics)
 listedLyrics = formatedLyrics.split('\n')
 print(artist, "-" ,title)
-for phrase in listedLyrics:
-    print(phrase)
-    input()
+for arg in sys.argv:
+    if arg == "--all":
+        print(formatedLyrics)
+    elif arg == "--line":
+        for phrase in listedLyrics:
+            print(phrase)
+            input()
+    elif arg == "luricifer.py":
+        pass
+    else:
+        print("Usage :")
+        print("python luricifer.py -all for all the lyrics at once")
+        print("python luricifer.py -line to display the lyrics per line")
