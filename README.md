@@ -16,9 +16,9 @@ You can download Luricifer by cloning the `Git Repo <https://github.com/mhtghn/L
 
     $ git clone https://github.com/mhtghn/Luricifer.git
     
-    $ sudo pip install bs4
+    $ cd Luricifer
     
-    $ sudo pip install dbus
+    $ sudo pip install -r requirements.txt
     
 Usage
 ----------------------
