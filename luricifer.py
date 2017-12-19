@@ -65,7 +65,8 @@ if __name__ == '__main__':
             start_time = time.time()
             input()
             print(phrase)
-            synced_lyrics += str(time.time() - start_time) + '\t' + phrase + '\n'
+            synced_lyrics += '{}\t{}\n'.format(
+                str(time.time() - start_time), phrase)
         sync.save_synced_lyrics(synced_lyrics)
 
     else:
