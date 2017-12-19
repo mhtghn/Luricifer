@@ -24,12 +24,12 @@ Usage
 ----------------------
 You need to have the Spotify app (not the web player) launched and a song playing
 
-If you want to display all the lyrics at once : 
+If you already synced the lyrics or if you want to display all the lyrics at once : 
 
     $ python luricifer.py
     
-If you want to display the lyrics one line at a time : 
+If you want to sync the lyrics to the song : 
 
-    $ python luricifer.py --line
+    $ python luricifer.py --sync
     
 Press `<Enter>` to display the next line.
