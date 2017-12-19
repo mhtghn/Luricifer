@@ -1,9 +1,9 @@
 import argparse
 import dbus
+import sync
 import time
 
-import AZlyrics
-import sync
+from azlyrics import Azlyrics
 
 
 def parse_args():
@@ -53,7 +53,7 @@ if __name__ == '__main__':
 
     print('{0} - {1}'.format(artist, title))
 
-    az = AZlyrics.Azlyrics(artist, title)
+    az = Azlyrics(artist, title)
     lyrics = az.get_lyrics()
     formatted_lyrics = az.format_lyrics(lyrics)
     sync = sync.Sync(artist, title)
@@ -65,7 +65,8 @@ if __name__ == '__main__':
             start_time = time.time()
             input()
             print(phrase)
-            synced_lyrics += str(time.time() - start_time) + '\t' + phrase + '\n'
+            synced_lyrics += '{}\t{}\n'.format(
+                str(time.time() - start_time), phrase)
         sync.save_synced_lyrics(synced_lyrics)
 
     else:
