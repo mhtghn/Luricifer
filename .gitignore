@@ -101,6 +101,6 @@ venv.bak/
 .mypy_cache/
 
 #PyCharm
-.idea/
+.idea
 
 synced

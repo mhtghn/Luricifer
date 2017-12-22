@@ -10,7 +10,7 @@ on Debian based distribution (tested with Ubuntu 17.10)
 Installation
 ----------------------
 
-You can download Luricifer by cloning the `Git Repo <https://github.com/mhtghn/Luricifer>` and simply installing its requirements::
+You can download Luricifer by cloning the `Git Repo <https://github.com/mhtghn/Luricifer>` and simply installing its requirements:
 
 
 

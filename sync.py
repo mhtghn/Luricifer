@@ -13,16 +13,17 @@ class Sync(object):
             os.makedirs('./synced')
 
     def save_synced_lyrics(self, synced_lyrics):
-        if not os.path.exists('./synced/'+self.artist):
-            os.makedirs('./synced/'+self.artist)
-        file = open('./synced/'+self.artist+'/'+self.title+'.sync', 'w')
+        if not os.path.exists('./synced/' + self.artist):
+            os.makedirs('./synced/' + self.artist)
+        file = open('./synced/' + self.artist + '/' + self.title + '.sync', 'w')
         file.write(synced_lyrics)
         file.close()
 
     def is_synced(self):
-        return os.path.isfile('./synced/'+self.artist+'/'+self.title+'.sync')
+        return os.path.isfile('./synced/' + self.artist + '/' + self.title + '.sync')
 
     def get_synced_lyrics(self):
         file = open('./synced/' + self.artist + '/' + self.title + '.sync', 'r')
         synced_lyrics = file.read()
+        file.close()
         return synced_lyrics
